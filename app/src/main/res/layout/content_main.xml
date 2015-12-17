@@ -12,15 +12,18 @@
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabSelectedTextColor="@android:color/holo_red_light"
-        app:tabIndicatorColor="@android:color/holo_red_light"
-        app:tabTextColor="@android:color/black"
         app:tabGravity="fill"
-        app:tabMode="scrollable"/>
+        app:tabIndicatorColor="@android:color/holo_red_light"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@android:color/holo_red_light"
+        app:tabTextColor="@android:color/black" />
+
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tablayout"/>
+        android:layout_below="@id/tablayout" />
+
+
 
 </RelativeLayout>

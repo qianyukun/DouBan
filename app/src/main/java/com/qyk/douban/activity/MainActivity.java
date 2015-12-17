@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.qyk.douban.R;
 import com.qyk.douban.fragment.BookFragment;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
     private TabLayout tablayout;
+    static long start = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,7 +42,8 @@ public class MainActivity extends AppCompatActivity
 
 
     }
-    private void initView(){
+
+    private void initView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -55,29 +58,28 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        tablayout= (TabLayout) findViewById(R.id.tablayout);
+        tablayout = (TabLayout) findViewById(R.id.tablayout);
         tablayout.setPadding(5, 5, 5, 5);
 
-        TabLayout.Tab tab_book=tablayout.newTab();
+        TabLayout.Tab tab_book = tablayout.newTab();
         tab_book.setText("Book");
         tablayout.addTab(tab_book, 0, true);
 
-        TabLayout.Tab tab_film=tablayout.newTab();
+        TabLayout.Tab tab_film = tablayout.newTab();
         tab_film.setText("Film");
         tablayout.addTab(tab_film, 1);
 
-        TabLayout.Tab tab_music=tablayout.newTab();
+        TabLayout.Tab tab_music = tablayout.newTab();
         tab_music.setText("Music");
         tablayout.addTab(tab_music, 2);
 
     }
 
-    private void setActions(){
+    private void setActions() {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
             }
         });
         tablayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -97,13 +99,20 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+            if (System.currentTimeMillis() - start > 2000) {
+                start = System.currentTimeMillis();
+                Toast.makeText(MainActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
+            } else {
+                finish();
+            }
         }
     }
 
