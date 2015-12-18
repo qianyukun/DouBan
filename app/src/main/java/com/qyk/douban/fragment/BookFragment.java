@@ -7,7 +7,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -17,6 +16,7 @@ import android.widget.Toast;
 import com.qyk.douban.R;
 import com.qyk.douban.adapter.BookAdapter;
 import com.qyk.douban.model.Book;
+import com.qyk.douban.widget.EditTextPassWordVisiable;
 
 import java.util.List;
 
@@ -61,7 +61,7 @@ public class BookFragment extends Fragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-//		doSearchBookByName("英语");
+		doSearchBookByName("Android");
 	}
 
 	private void initViews(View view){
@@ -93,7 +93,7 @@ public class BookFragment extends Fragment{
 			@Override
 			public boolean onQueryTextSubmit(String query) {
 				doSearchBookByName(query);
-				searchKey=searchView.getQuery().toString();
+				searchKey = searchView.getQuery().toString();
 				return false;
 			}
 
